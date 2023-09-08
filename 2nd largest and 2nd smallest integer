@@ -1,0 +1,45 @@
+int Slargest(vector<int> a, int n){
+    int large= a[0];
+    int Slarge= -1;
+    for(int i=1; i<=n-1; i++){
+        
+        
+        if(a[i]> large){
+            Slarge=large;
+            large= a[i];
+        }
+
+        else if(a[i]<large  && a[i]> Slarge ){
+            Slarge=a[i];
+        }
+
+    }
+    return Slarge;
+}
+
+int SSsmall(vector<int> a, int n){
+    int small= a[0];
+    int Ssmall= INT_MAX;
+
+    for(int i=1; i<n; i++){
+
+    if(a[i]< small){
+        Ssmall=small;
+        small=a[i];
+    }
+
+    else if (a[i]!=small && a[i]<Ssmall){
+        Ssmall=a[i];
+    }
+   
+
+    }
+     return Ssmall;
+}
+
+
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    int slargest= Slargest(a, n);
+    int ssmallest= SSsmall(a, n);
+    return {slargest, ssmallest};
+}
