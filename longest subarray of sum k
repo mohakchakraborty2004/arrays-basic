@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>>
+int longestSubarrayWithSumK(vector<int> a, long long k) {
+    map<long long, int> prefixsum;
+    long long sum=0;
+    int maxlen=0;
+    for(int i=0; i<a.size(); i++){
+        sum+=a[i];
+        if(sum==k){
+            maxlen= max(maxlen, i+1);
+        }
+        long long rem = sum-k;
+        if(prefixsum.find(rem)!= prefixsum.end()){
+            int len= i - prefixsum[rem];
+            maxlen= max(maxlen , len);
+        }
+        if(prefixsum.find(sum)== prefixsum.end()){
+            prefixsum[sum]=i;
+        }
+    }
+    return maxlen;
+}
